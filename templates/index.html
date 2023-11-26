@@ -1,0 +1,256 @@
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/jquery.js') }}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='scripts/dayjs.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='scripts/myscript.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='scripts/jquery.plugin.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='scripts/jquery.keypad.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style/style2.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style/style_tab.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style/jquery.keypad.css')}}">
+<title>AgriBecky</title>
+</head>
+<body oncontextmenu="return false;">
+<!-- 設定画面 !-->
+<div class="config_bg"></div>
+<div class="config_window">
+    <form>
+        <div class="right"><div id="setConfig" class="config_confirm">決定</div></div>
+        <div class="config_comment center">設定ウィンドウの外側をクリックするとこの画面は閉じます</div>
+        <b>強制点灯時間</b><br>
+        <label>　日の出の　<input type="text" id="morning_offset" class="w05 right"></label> <label>分後からの<input type="text" id="morning_minutes" class="w05 right"></label>分間<br>
+        <label>　日の入りの<input type="text" id="evening_offset" class="w05 right"></label> <label>分前までの<input type="text" id="evening_minutes" class="w05 right"></label>分間<br>
+        <br>
+        <b>天気感知間隔</b><br>
+        <div class="config_comment">
+        例　「10分間隔 6回」にすると、10分おきに光センサーの状態を取得し、<br>
+        　　過去6回（60分）の天気を総合的に判断して<br>
+        　　次の60分間について育成LEDを点灯させるか消灯させるか判断します<br>
+        <br></div>
+        <label>　天気感知　<input type="text" id="sensing_interval" class="w05 right"></label>分間隔で <label><input type="text" id="sensing_count" class="w05 right"></label>回<br>
+        <br>
+    </form>
+</div>
+<!-- 工場設定画面 !-->
+<div class="admin_window">
+    <form>
+        <div class="right"><div class="config_confirm">決定</div></div>
+        <div class="config_comment center">設定ウィンドウの外側をクリックするとこの画面は閉じます</div>
+        <b>工場設定</b><br>
+        <b>トライ</b>
+        <table>
+            <tr><td>温湿度計</td><td>コンテック</td><td>育成LED</td><td>夜も光センサー</td></tr>
+            <tr><td><span class="btnTry" id="HumiTry">トライ</span></td>
+                <td><span class="btnTry" id="ContecTry">トライ</span></td>
+                <td><span class="btnTry" id="LEDTry">トライ</span></td>
+                <td><span class="btnTry" id="NightSense">測定しない</span></td></tr>
+        </table>
+        <br>
+        <b>場所</b><br>
+        <label for="place">　地域：<input type="text" name="place" id="place" class="w1 left"></label><br>
+        <label for="lat">　緯度：<input type="text" name="lat" id="lat" class="w1 right"></label>　
+        <label for="lon">　経度：<input type="text" name="lon" id="lon" class="w1 right"></label>　
+        <label for="elev">　標高：<input type="text" name="elev" id="elev" class="w1 right"></label><br>
+        <br>
+        <b>バッテリーグラフ設定</b><br>
+        <div class="config_comment">　見栄えが変わるだけで実際の設定はオムロンの電圧検出リレーを調整する必要があります</div>
+        <label for="batt_yellow">　　黄色のパーセント：<input type="text" name="batt_yellow" id="batt_yellow" class="w05 right">%</label>　　
+        <label for="batt_green">　　緑のパーセント：<input type="text" name="batt_green" id="batt_green" class="w05 right">%</label><br>
+        <br>
+        <b>出力選択</b><br>
+        <div class="config_comment">
+        　本システムは4出力に対応しています　ほ場の規模に応じて出力を切ってください<br>
+        <br></div>　
+        <div class="btnOutput" id="output1">出力1</div>
+        <div class="btnOutput" id="output2">出力2</div>
+        <div class="btnOutput" id="output3">出力3</div>
+        <div class="btnOutput" id="output4">出力4</div>
+    </form>
+</div>
+<!-- 時計設定 !-->
+<div class="clock_window">
+    <div class="config_comment center">設定ウィンドウの外側をクリックするとこの画面は閉じます</div>
+    <div class="right"><div id="setClock" class="config_clock">日時設定</div></div>
+    <b>時刻設定</b><br>
+    <br>　
+    <label for="year"><input type="text" name="year" id="year" class="w05 right">年</label>
+    <label for="month"><input type="text" name="month" id="month" class="w05 right">月</label>
+    <label for="day"><input type="text" name="day" id="day" class="w05 right">日</label>　
+    <label for="hour"><input type="text" name="hour" id="hour" class="w05 right">時</label>
+    <label for="minute"><input type="text" name="minute" id="minute" class="w05 right">分</label><br>
+</div>
+<!-- データベース設定 !-->
+<div class="db_window">
+    <div class="config_comment center">設定ウィンドウの外側をクリックするとこの画面は閉じます</div>
+    <div class="right"><div class="config_confirm">決定</div></div>
+    <b>データベース設定</b><br>
+    <br>
+    <b>累計計算開始日</b><br>
+    <label for="cumsum_year"><input type="text" name="cumsum_year" id="cumsum_year" class="w05 right">年</label>
+    <label for="cumsum_month"><input type="text" name="cumsum_month" id="cumsum_month" class="w05 right">月</label>
+    <label for="cumsum_day"><input type="text" name="cumsum_day" id="cumsum_day" class="w05 right">日</label><br>
+    <br>
+    <b>指定した日以前のデータ削除</b><span style="color:red;">（注意　確認画面なし）</span><br>
+    <label for="del_year"><input type="text" name="del_year" id="del_year" class="w05 right">年</label>
+    <label for="del_month"><input type="text" name="del_month" id="del_month" class="w05 right">月</label>
+    <label for="del_day"><input type="text" name="del_day" id="del_day" class="w05 right">日</label><br>
+    <div class="right"><div class="del_db" id="del_db">削除</div></div><br>
+    <div id="del_result" style="color:red;"></div>
+</div>
+
+
+<!-- メイン画面 !-->
+<table class="top">
+<tr>
+<td class="left"><span class="title">AgriBecky</span></td>
+<td class="right">
+    <span id="btnConfig"><img src="{{url_for('static', filename='images/icon_config.png')}}"></span>
+    <span id="btnAdmin"><img src="{{url_for('static', filename='images/icon_admin.png')}}"></span>
+    <span id="btnClock"><img src="{{url_for('static', filename='images/icon_clock.png')}}"></span>
+    <span id="btnDB"><img src="{{url_for('static', filename='images/icon_db.png')}}"></span><br>
+    <span id="time">　</span></td>
+</tr>
+</table>
+
+<div class="tabs">
+    <input id="btn_main" type="radio" name="tab_item" checked>
+    <label class="tab_item" for="btn_main">メイン</label>
+    <input id="btn_cpl" type="radio" name="tab_item">
+    <label class="tab_item" for="btn_cpl">制御盤</label>
+    <input id="btn_log" type="radio" name="tab_item">
+    <label class="tab_item" for="btn_log">ログ</label>
+    <input id="btn_daily" type="radio" name="tab_item">
+    <label class="tab_item" for="btn_daily">一日グラフ</label>
+    <input id="btn_graph" type="radio" name="tab_item">
+    <label class="tab_item" for="btn_graph">週間グラフ</label>
+    <!-- メイン画面 !-->
+    <div class="tab_content" id="main_content">
+        <div class="main_msg_ng" id="main_msg"></div>
+        <div class="parent">
+            <div class="ephem">
+                <div class="ephem_content">
+                <b>暦</b><br>
+                <span id="date">○月○日</span><br>
+                　日の出　　<span id="sunrise">00:00</span><br>
+                　日の入り　<span id="sunset">00:00</span><br>
+                <br>
+                　月齢　　　<span id="moon_phase" class="center">14.0</span><br>
+                </div>
+                <div class="ephem_content">
+                <br>
+                <img id="moon_image">
+                </div>
+                <hr>
+                <b>設定</b><br>
+                育成LEDオン<br>
+                　<span id="morning_start">00:00</span> ～ <span id="morning_end">00:00</span><br>
+                　<span id="evening_start">00:00</span> ～ <span id="evening_end">00:00</span><br>
+                <hr>
+                <b>環境</b><br>
+                　気温：<span id="temp"></span><br>
+                　湿度：<span id="humi"></span><br>
+            </div>
+            <div class="main_right">
+                <div class="batt">
+                    <b>バッテリー残量</b>
+                    <div class="batt_area">
+                    <div class="batt_graph">
+                        <div class="batt_outer">
+                        <div class="batt_yellow"></div><div class="batt_green"></div><div class="batt_blue"></div></div><div class="batt_terminal"></div>
+                    </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="result_main" id="dailylog">
+                    <b>実績</b>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 制御盤画面 !-->
+    <div class="tab_content" id="cpl_content">
+        <div class="parent">
+            <div class="cpl">
+                <b>制御盤</b>　状態：<b id="stateAuto">自動</b><br>
+                <br>
+                <table>
+                    <tr><td class="left">自動</td><td class="right">手動</td>
+                        <td class="w1 center">Ready</td>
+                        <td class="w1 center">起動</td>
+                        <td class="w1 center">停止</td></tr>
+                    <tr><td colspan="2"><div id="swAuto"><img src="{{url_for('static', filename='images/sw_l.png')}}" id="imgAuto" class="imgAuto"></div></td>
+                        <td class="center"><img src="{{url_for('static', filename='images/btnGreenOff.png')}}" id="lampReady"></td>
+                        <td class="center"><img src="{{url_for('static', filename='images/btnOrangeOff.png')}}" id="btnRun"></td>
+                        <td class="center"><img src="{{url_for('static', filename='images/btnBlack.png')}}" id="btnStop"></td></tr>
+                </table>
+                <br>
+                <table>
+                    <tr><td>ランプ点灯</td><td>育成LED強制ON</td></tr>
+                    <tr><td class="center"><div id="btnAllLight"><img src="{{url_for('static', filename='images/btnRedOff.png')}}" id="imgLight"></div></td>
+                        <td class="center"><div id="btnLedOn"><img src="{{url_for('static', filename='images/btnRedOff.png')}}" id="imgLedOn"></div></td></tr>
+                </table>
+            </div>
+            <div class="sim">
+                <b>シミュレーション画面</b>
+                <table>
+                    <tr>
+                        <td class="center">
+                            <img src="{{url_for('static', filename='images/tent.jpg')}}" class="tent">
+                        </td>
+                        <td><span class="sim_label">① <span id="lamp0">●</span></span><br>
+                            <span class="sim_label">② <span id="lamp1">●</span></span><br>
+                            <span class="sim_label">③ <span id="lamp2">●</span></span><br>
+                            <span class="sim_label">④ <span id="lamp3">●</span></span><br>
+                            <span class="sim_label">⑤ <span id="lamp4">●</span></span><br>
+                        </td>
+                        <td class="center">
+                            <img src="{{url_for('static', filename='images/led_off.png')}}" class="imgled" id="imgLed"><br>
+                            育成LED　<span id="lamp_led">●</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <table class="batt_lamp">
+                            <tr><td class="label"><b>バッテリ電圧リレー</b></td>
+                                <td class="label">IN6</td>
+                                <td class="label">IN7</td>
+                            <tr><td></td>
+                                <td class="lamp"><span id="lamp5">■</span></td>
+                                <td class="lamp"><span id="lamp6">■</span></td>
+                        </table>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div class="mode" id="mode">モード</div></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- ログ画面 !-->
+    <div class="tab_content" id="log_content">
+        <div class="parent">
+            <div class="log" id="logbox">
+            </div>
+            <div class="log_right">
+            <div class="lightlog" id="lightlog"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 一日グラフ画面 !-->
+    <div class="tab_content" id="daily_content">
+        <div class="parent_graph">
+            <img src="" id="daily_light" class="daily_light">
+            <img src="" id="daily_temp" class="daily_temp">
+            <div class="dayNimus" id="dayNimus-">＜</div><div class="dayPlus" id="dayPlus">＞</div>
+        </div>
+    </div>
+    <!-- 週間グラフ画面 !-->
+    <div class="tab_content" id="graph_content">
+        <div class="parent_graph">
+            <img src="" id="graph_light" class="graph_light">
+            <img src="" id="graph_temp" class="graph_temp">
+        </div>
+    </div>
+</div>
+</body>
+</html>

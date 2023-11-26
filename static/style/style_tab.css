@@ -1,0 +1,64 @@
+/* 参考
+https://bagelee.com/log/css/create_tabs_using_only_css/
+*/
+
+/*タブ切り替え全体のスタイル*/
+.tabs {
+  margin-top: 50px;
+  padding-bottom: 40px;
+  background-color: #fff;
+  width: 900px;
+  height: 400px;
+  margin: 0 auto;
+}
+
+/*タブのスタイル*/
+.tab_item {
+  box-sizing: border-box;
+  width: calc(100%/5);
+  height: 40px;
+  border-radius: 10px 10px 0 0;
+  border: solid 1px black;
+  border-bottom: 3px solid #5ab4bd;
+  background-color: #d9d9d9;
+  line-height: 40px;
+  font-size: 16px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  border: solid 1px black;
+  display: none;
+  padding: 0;
+  clear: both;
+  overflow: hidden;
+  height: 400px;
+}
+
+
+/*選択されているタブのコンテンツのみを表示*/
+#btn_main:checked ~ #main_content,
+#btn_cpl:checked ~ #cpl_content,
+#btn_log:checked ~ #log_content,
+#btn_daily:checked ~ #daily_content,
+#btn_graph:checked ~ #graph_content {
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  background-color: #5ab4bd;
+  color: #fff;
+}

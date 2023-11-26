@@ -1,0 +1,529 @@
+.right {    text-align: right;}
+.left {     text-align: left;}
+.center {   text-align: center;}
+.d2 {   width: calc(100%/2);}
+.d3 {   width: calc(100%/3);}
+.d4 {   width: calc(100%/4);}
+.w03 {  width: 30px;}
+.w05 {  width: 50px;}
+.w1 {   width: 100px;}
+.w2 {   width: 200px;}
+.w3 {   width: 300px;}
+.w4 {   width: 400px;}
+
+/* 選択不可にする */
+body{
+  user-select: none;
+}
+
+/* 画像ドラッグ不可にする */
+img {
+	user-drag: none;
+	-webkit-user-drag: none;
+	-moz-user-select: none;
+}
+
+
+
+table.top {
+    width: 900px;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+.top td {
+    width: calc(100%/2);
+}
+.top .title{
+    font-size: x-large;
+    font-weight: bold;
+}
+
+span.btnTry {
+    border: 1px solid black;
+    display: inline-block;
+    text-align: center;
+    width: 100px;
+    user-select: none;
+}
+
+span.btnTryOn {
+    background-color: pink;
+}
+
+span.btnTryOff {
+    background-color: yellow;
+}
+
+div.content {
+    width: 900px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+div.parent {
+    width: 100%;
+    height: 400px;
+    display: inline-flex;
+}
+
+div.log {
+    width: 100%;
+    height: 400px;
+    overflow: auto;
+    color: white;
+    background-color: black;
+}
+
+/* メイン画面デザイン */
+div.main_msg_ok {
+    border: 1px solid black;
+    font-size: large;
+    font-weight: bold;
+    background-color: white;
+    color: blue;
+}
+
+div.main_msg_ng {
+    border: 1px solid black;    
+    font-size: large;
+    font-weight: bold;
+    background-color: black;
+    color: yellow;
+}
+
+
+div.ephem {
+    display: block;
+    width: 30%;
+    padding: 10px;
+    height: calc(400-padding)px;
+    border: 1px solid black;
+    vertical-align: top;
+}
+
+div.ephem_content {
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.main_right {
+    padding: 0;
+    margin: 0;
+    width: 70%;
+    height: 100%;
+}
+
+div.batt {
+    display: block;
+    width: 100%;
+    height: 30%;
+    padding: 10px;
+/*    height: calc(400-padding)px; */
+    border: 1px solid black;
+}
+
+
+div.result_main {
+    display: block;
+    width: 100%;
+    height: 70%;
+    padding: 10px;
+/*    height: calc(400-padding)px; */
+    border: 1px solid black;
+}
+
+/* バッテリーデザイン */
+div.batt_area {
+    width: 100%;
+    height: 50px;
+}
+
+div.batt_graph {
+    margin: 0 auto;
+    width: 450px;
+    height: 50px;
+}
+    
+div.batt_meter {
+    width: 400px;
+    height: 50px;
+    margin: 0;
+    display: inline-block;
+    border: 5px solid black;
+    border-radius: 5px;
+    background: linear-gradient(90deg, OrangeRed 10%, yellow 35%, lightgreen 65%, cyan 90%);
+}
+
+div.batt-black {
+    margin: 0 0 0 auto;
+    width: 50%;
+    height: 100%;
+    background-color: black;
+}
+
+div.batt_terminal {
+    border: 5px solid transparent;
+    display: inline-block;
+    margin: auto 0;
+    width: 5px;
+    height: 50px;
+	background: linear-gradient(transparent 33.3%, black 0, black 66.6%, transparent 0);
+    background-size: 50px 100%;
+}
+
+
+div.batt_outer {
+    border: 5px solid black;
+    display: inline-block;
+    width: 400px;
+    height: 100%;
+    margin: auto 0;
+    border-radius: 5px;
+}
+
+div.batt_yellow {
+    border: none;
+    margin: 0;
+    display: inline-block;
+    width: 20%;
+    height: 50px;
+    background-color: yellow;
+}
+
+div.batt_green {
+    border: none;
+    margin: 0;
+    display: inline-block;
+    width: 50%;
+    height: 50px;
+    background-color: yellowgreen;
+}
+
+div.batt_blue {
+    border: none;
+    margin: 0;
+    display: inline-block;
+    width: 30%;
+    height: 50px;
+    background-color: aqua;
+}
+
+
+/* 制御盤デザイン */
+div.cpl {
+    display: block;
+    width: calc(100%/2);
+    background-color: silver;
+    padding: 10px;
+    height: calc(400-padding)px;
+    border: 1px solid black;
+}
+
+img.imgAuto {
+    width: 100px;
+    height: 100px;
+}
+
+img.imgled {
+    max-height: 180px;
+    width: auto;
+}
+
+img.tent {
+    max-width: 180px;
+    height: auto;
+}
+
+table.tent {
+    border-collapse: collapse;
+    border: none;    
+}
+
+span.sim_label {
+    text-align: center;
+    font-size: 20px;
+}
+
+
+.batt_lamp {
+    text-align: center;
+}
+
+.batt_lamp.label {
+    font-size: 20px;
+}
+
+.batt_lamp td.lamp {
+    text-align: center;
+    font-size: 40px;
+    height: 30px;
+}
+
+div.sim {
+    display: block;
+    padding: 10px;
+    width: calc(100%/2);
+    height: calc(400-padding)px;
+    border: 1px solid black;
+}
+
+table.volt {
+    width: 80%;
+    margin: 0 auto;
+}
+
+table.calc {
+    width: 100%;
+    border: 1px solid black;
+}
+
+.mode {
+    width: 200px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: large;
+    margin: 0 auto;
+    background-color: white;
+}
+
+/* メーターのデザイン */
+table.meter {
+    width: 80%;
+    margin: 0 auto;
+}
+
+#meter-frame {
+    margin: 0 auto;
+    width: 80%;
+    height: 20px;
+    border-radius: 5px;
+    background-color:#000000;
+    display: flex;
+    padding: 2px 2px;
+}
+
+#meter-bar {
+    height: 20px;
+    background-color:yellow;
+    transition: 300ms;
+}
+
+#meter-mark {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    filter: saturate(500%);
+    box-shadow: 0 0 5px 3px rgb(200, 255, 255),
+                0 0 7px 7px rgb(100, 255, 255);
+}
+
+div.bar_frame {
+    margin: 5 auto;
+    width: 80%;
+    height: 10px;
+    display: flex;
+}
+
+.bar_frame .bar{
+    margin: 5px 0;
+    height: 10px;
+}
+
+.bar_frame .red {
+    background-color:red;
+}
+
+.bar_frame .yellow {
+    background-color:yellow;
+}
+
+.bar_frame .green {
+    background-color:green;
+}
+
+
+/* ログデザイン */
+.parent div.log {
+    padding: 10px;
+    width: calc(50%);
+    height: calc(400-padding)px;
+    background-color: black;
+    border: 1px solid black;
+    color: white;
+}
+
+.parent div.log_right {
+    padding: 0px;
+    width: 50%;
+}
+
+.parent div.lightlog {
+    padding: 10px;
+    width: calc(100% - 20px);
+    height: 100%;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+}
+
+
+/* 設定画面 */
+div.config_bg {
+    visibility: hidden;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+}
+
+div.config_window {
+    visibility: hidden;
+    background-color: white;
+    font-size: large;
+    width: 800px;
+    height: 500px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 3;
+}
+
+div.config_comment {
+    font-size: small;
+}
+
+div.config_confirm {
+    display: inline-block;
+    border: 1px solid black;
+    background-color: lightgreen;
+    border-radius: 4px;    
+    padding: 4px 10px;
+    text-align:center;
+    font-size: large;
+}
+
+div.config_clock {
+    display: inline-block;
+    border: 1px solid black;
+    background-color: lightgreen;
+    border-radius: 4px;    
+    padding: 4px 10px;
+    text-align:center;
+    font-size: large;
+}
+
+div.btnOutput {
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 70px;
+    height: 30px;
+    display: inline-block;
+    text-align: center;
+}
+
+div.outputOn  {background-color:orange;}
+div.outputOff {background-color:gray;}
+
+div.admin_window {
+    visibility: hidden;
+    background-color: white;
+    font-size: large;
+    width: 800px;
+    height: 500px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 2;
+}
+
+div.clock_window {
+    visibility: hidden;
+    background-color: white;
+    font-size: large;
+    width: 800px;
+    height: 200px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 2;
+}
+
+div.db_window {
+    visibility: hidden;
+    background-color: white;
+    font-size: large;
+    width: 800px;
+    height: 400px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 2;
+}
+
+div.del_db {
+    display: inline-block;
+    border: 1px solid black;
+    font-weight: bold;
+    color: darkred;
+    background-color:lightpink;
+    border-radius: 4px;    
+    padding: 4px 10px;
+    text-align:center;
+    font-size: large;
+}
+
+div.parent_graph {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+img.graph_light {
+    height: 50%;
+    width: 100%;
+}
+
+img.graph_temp {
+    height: 50%;
+    width: 100%;
+}
+
+div.dayNimus{
+    position: absolute;
+    border: solid 2px black;
+    background-color: lightyellow;
+    width: 30px;
+    text-align: center;
+    font-size: large;
+    top: 0;
+    left: 0;
+}
+
+div.dayPlus{
+    position: absolute;
+    border: solid 2px black;
+    background-color: lightyellow;
+    width: 30px;
+    text-align: center;
+    font-size: large;
+    top: 0;
+    right: 0;
+}
